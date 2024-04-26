@@ -31,7 +31,7 @@ serviceMaps:
             - jsonPath: $.ServiceDefinition.additionalDetails
               type: JSON
               dbType: JSONB
-              
+
             - jsonPath: $.ServiceDefinition.clientId
 
 
@@ -108,7 +108,7 @@ serviceMaps:
               dbType: JSONB
 
             - jsonPath: $.Service.accountId
-            
+
             - jsonPath: $.Service.clientId
 
 
