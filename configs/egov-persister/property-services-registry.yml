@@ -18,7 +18,7 @@ serviceMaps:
         type: JSON
         dbType: JSONB
 
-    - query: INSERT INTO eg_pt_property (id, propertyid, tenantid, surveyid, accountid, oldpropertyid, status, acknowldgementnumber, propertytype, ownershipcategory, usagecategory, creationreason, nooffloors, landarea, superbuiltuparea, linkedproperties, source,  channel, createdby, createdtime, lastmodifiedby, lastmodifiedtime, additionaldetails,exemption,parentpropertyid,ispartofproperty,parentpropertyuuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?,?);
+    - query: INSERT INTO eg_pt_property (id, propertyid, tenantid, surveyid, accountid, oldpropertyid, status, acknowldgementnumber, propertytype, ownershipcategory, usagecategory, creationreason, nooffloors, landarea, superbuiltuparea, linkedproperties, source,  channel, createdby, createdtime, lastmodifiedby, lastmodifiedtime, additionaldetails,exemption,parentpropertyid,parentpropertyuuid,ispartofproperty) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?);
       basePath: Property
       jsonMaps:
 
@@ -76,9 +76,9 @@ serviceMaps:
 
       - jsonPath: $.Property.parentPropertyId
 
-      - jsonPath: $.Property.isPartOfProperty
-      
       - jsonPath: $.Property.parentPropertyUuId
+
+      - jsonPath: $.Property.isPartOfProperty
 
 
     - query: INSERT INTO eg_pt_owner(ownerinfouuid, tenantid, propertyid, userid, status, isprimaryowner, ownertype, ownershippercentage, institutionid, relationship, createdby, createdtime, lastmodifiedby, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
@@ -638,26 +638,44 @@ serviceMaps:
 
 
   - version: 1.0
-    description: Update  in  EG_PT_PROPERTY table in case of amalgamation
+    description: Update  in  EG_PT_PROPERTY table in case of Bifurcation
     fromTopic: update-property-bifurcation-inactive
     isTransaction: true
     queryMaps:
 
 
-    - query: UPDATE eg_pt_property SET  status='INACTIVE' WHERE parentpropertyuuid=? AND tenantId=?;
+    - query: UPDATE eg_pt_property SET  status='INACTIVE' WHERE propertyid=? AND tenantId=?;
       basePath: $.Property
       type: JSON
       dbType: JSONB
 
       jsonMaps:
 
-      - jsonPath: $.Property.parentPropertyUuId
+      - jsonPath: $.Property.parentPropertyId
 
       - jsonPath: $.Property.tenantId
 
+  - version: 1.0
+    description: Update  in  EG_PT_PROPERTY table in case of Bifurcation Reject  Child Inactive
+    fromTopic: update-property-bifurcation-child-inactive
+    isTransaction: true
+    queryMaps:
+
+
+    - query: UPDATE eg_pt_property SET  status='INACTIVE' WHERE parentpropertyid=?;
+      basePath: $.Property
+      type: JSON
+      dbType: JSONB
+
+      jsonMaps:
+
+      - jsonPath: $.Property.parentPropertyId
+
+
+
 
   - version: 1.0
-    description: Update  in  EG_PT_PROPERTY table in case of amalgamation
+    description: Update  in  EG_PT_PROPERTY table in case of Bifurcation
     fromTopic: update-parent-property-bifurcation
     isTransaction: true
     queryMaps:
@@ -670,7 +688,7 @@ serviceMaps:
 
       jsonMaps:
 
-      - jsonPath: $.Property.parentPropertyId
+      - jsonPath: $.Property.parentPropertyUuId
 
       - jsonPath: $.Property.tenantId
 
@@ -709,3 +727,92 @@ serviceMaps:
       - jsonPath: $.Property.id
 
       - jsonPath: $.Property.tenantId
+
+  - version: 1.0
+    description: Persists property details in eg_pt_bifurcation table
+    fromTopic: save-property-bifurcation
+    isTransaction: true
+    queryMaps:
+
+
+    - query: INSERT INTO eg_pt_bifurcation (id, parent_property,max_bifurcation, property_details, createdtime) VALUES ((select nextval('seq_eg_pt_registry_audit')), ?, ?, ?, (SELECT extract(epoch from now())));
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.parentPropertyId
+
+      - jsonPath: $.Property.maxBifurcation
+
+      - jsonPath: $.Property
+        type: JSON
+        dbType: JSONB
+
+
+  - version: 1.0
+    description: Persists property details in appeal_data table
+    fromTopic: save-property-appeal
+    isTransaction: true
+    queryMaps:
+
+
+    - query: INSERT INTO eg_pt_property_appeal (id, propertyid,status,creationReason,acknowldgementNumber,tenantid,appealid) VALUES (?,?,?,?,?,?,?);
+      basePath: Appeal
+      jsonMaps:
+
+      - jsonPath: $.Appeal.id
+
+      - jsonPath: $.Appeal.propertyId
+
+      - jsonPath: $.Appeal.status
+
+      - jsonPath: $.Appeal.creationReason
+
+      - jsonPath: $.Appeal.acknowldgementNumber
+
+      - jsonPath: $.Appeal.tenantId
+
+      - jsonPath: $.Appeal.appealId
+
+      
+
+    - query: INSERT INTO eg_pt_document (id, tenantid, entityid, documenttype, filestoreid, documentuid, status, createdby, lastmodifiedby, createdtime, lastmodifiedtime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+      basePath: $.Appeal.documents.*
+      jsonMaps:
+
+      - jsonPath: $.Appeal.documents.*.id
+
+      - jsonPath: $.Appeal.tenantId
+
+      - jsonPath: $.Appeal.id
+
+      - jsonPath: $.Appeal.documents.*.documentType
+
+      - jsonPath: $.Appeal.documents.*.fileStoreId
+
+      - jsonPath: $.Appeal.documents.*.documentUid
+
+      - jsonPath: $.Appeal.documents.*.status
+
+      - jsonPath: $.Appeal.auditDetails.createdBy
+
+      - jsonPath: $.Appeal.auditDetails.lastModifiedBy
+
+      - jsonPath: $.Appeal.auditDetails.createdTime
+
+      - jsonPath: $.Appeal.auditDetails.lastModifiedTime
+
+
+  - version: 1.0
+    description: Persists property details in appeal_data table update
+    fromTopic: update-property-appeal
+    isTransaction: true
+    queryMaps:
+
+
+    - query: update eg_pt_property_appeal set status=? where appealid=?
+      basePath: Appeal
+      jsonMaps:
+
+      - jsonPath: $.Appeal.status
+
+      - jsonPath: $.Appeal.appealId
