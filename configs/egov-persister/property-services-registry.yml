@@ -735,7 +735,7 @@ serviceMaps:
     queryMaps:
 
 
-    - query: INSERT INTO eg_pt_bifurcation (id, parent_property,max_bifurcation, property_details, createdtime) VALUES ((select nextval('seq_eg_pt_registry_audit')), ?, ?, ?, (SELECT extract(epoch from now())));
+    - query: INSERT INTO eg_pt_bifurcation (id, parent_property,max_bifurcation, property_details, createdtime) VALUES ((select nextval('seq_eg_pt_registry_audit')), ?, ?, ?, ?);
       basePath: Property
       jsonMaps:
 
@@ -755,7 +755,7 @@ serviceMaps:
     queryMaps:
 
 
-    - query: INSERT INTO eg_pt_property_appeal (id, propertyid,status,creationReason,acknowldgementNumber,tenantid,appealid) VALUES (?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_pt_property_appeal (id, propertyid,status,creationReason,acknowldgementNumber,tenantid,appealid,propertyaddress,assesmnetyear,nameofassigningofficer,designation,ruleunderorderpassed,dateoforder,dateofservice,dateofpayment,applicantaddress,reliefclaimed,statementoffacts,groundofappeal,ownername,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
       basePath: Appeal
       jsonMaps:
 
@@ -772,6 +772,40 @@ serviceMaps:
       - jsonPath: $.Appeal.tenantId
 
       - jsonPath: $.Appeal.appealId
+      
+      - jsonPath: $.Appeal.propertyAddress
+      
+      - jsonPath: $.Appeal.assessmentYear
+      
+      - jsonPath: $.Appeal.nameOfAssessingOfficer
+      
+      - jsonPath: $.Appeal.assessingOfficerDesignation
+      
+      - jsonPath: $.Appeal.ruleUnderOrderPassed
+      
+      - jsonPath: $.Appeal.dateOfOrder
+      
+      - jsonPath: $.Appeal.dateOfService
+      
+      - jsonPath: $.Appeal.dateOfPayment
+      
+      - jsonPath: $.Appeal.applicantAddress
+      
+      - jsonPath: $.Appeal.reliefClaimedInAppeal
+      
+      - jsonPath: $.Appeal.statementOfFacts
+      
+      - jsonPath: $.Appeal.groundOfAppeal
+      
+      - jsonPath: $.Appeal.ownerName
+      
+      - jsonPath: $.Appeal.auditDetails.createdBy
+
+      - jsonPath: $.Appeal.auditDetails.lastModifiedBy
+
+      - jsonPath: $.Appeal.auditDetails.createdTime
+
+      - jsonPath: $.Appeal.auditDetails.lastModifiedTime
 
       
 
@@ -816,3 +850,32 @@ serviceMaps:
       - jsonPath: $.Appeal.status
 
       - jsonPath: $.Appeal.appealId
+
+
+  - version: 1.0
+    description: Persists property details in Bifurcation table update
+    fromTopic: update-bifurcation-table-status
+    isTransaction: true
+    queryMaps:
+
+
+    - query: update eg_pt_bifurcation set status=? where childpropertyuuid=?
+      basePath: $.Property.propertyBifurcations.*
+      jsonMaps:
+
+      - jsonPath: $.Property.propertyBifurcations.*.status
+
+      - jsonPath: $.Property.propertyBifurcations.*.childpropertyUuid
+
+  - version: 1.0
+    description: Persists property details in Bifurcation table update
+    fromTopic: update-property-table-status-for-bifurcation-success
+    isTransaction: true
+    queryMaps:
+
+
+    - query: update eg_pt_property set status='ACTIVE' where parentpropertyuuid=?
+      basePath: $.Property
+      jsonMaps:
+
+      - jsonPath: $.Property.parentPropertyUuId
