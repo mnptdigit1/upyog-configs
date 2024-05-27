@@ -7,7 +7,7 @@ serviceMaps:
     isTransaction: true
     queryMaps:
 
-    - query: INSERT INTO eg_pt_notice(noticeType,tenantId,uuid,noticeNumber,name,address,propertyId,assessmentYear,acknowledgementNumber,dateOfAnnualRet,entryDate,entryTime,place,perticulars,asreturnfiled,aspermunispality,resolutionon,dated,designation,authorisedpersonname,mobilenumber,penaltyamount,appealno,createdby, createdtime, lastmodifiedby, lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_pt_notice(noticeType,tenantId,uuid,noticeNumber,name,address,propertyId,assessmentYear,acknowledgementNumber,dateOfAnnualRet,entryDate,entryTime,place,resolutionon,dated,designation,authorisedpersonname,mobilenumber,penaltyamount,appealno,createdby, createdtime, lastmodifiedby, lastmodifiedtime, rule_23, rule_33, rule_34, rule_36, failedto_produce_necessary_documents, willfully_furnishes_incorrect_information, obstruct_any_authority_appointed) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
       basePath: $.Notice
       jsonMaps:
 
@@ -37,12 +37,6 @@ serviceMaps:
 
       - jsonPath: $.Notice.place
 
-      - jsonPath: $.Notice.particulars
-
-      - jsonPath: $.Notice.asreturnFiled
-
-      - jsonPath: $.Notice.asperMunispality
-
       - jsonPath: $.Notice.resolutionOn
 
       - jsonPath: $.Notice.dated
@@ -64,10 +58,24 @@ serviceMaps:
       - jsonPath: $.Notice.auditDetails.lastModifiedBy
 
       - jsonPath: $.Notice.auditDetails.lastModifiedTime
+      
+      - jsonPath: $.Notice.Rule_23
+      
+      - jsonPath: $.Notice.Rule_33
+      
+      - jsonPath: $.Notice.Rule_34
+      
+      - jsonPath: $.Notice.Rule_36
+      
+      - jsonPath: $.Notice.FailedtoProduceNecessaryDocuments
+      
+      - jsonPath: $.Notice.WillfullyfurnishesIncorrectInformation
+      
+      - jsonPath: $.Notice.ObstructAnyAuthorityAppointed
 
 
 
-    - query: INSERT INTO eg_pt_notice_comment (uuid,noticeid,comment,createdby, createdtime, lastmodifiedby, lastmodifiedtime) VALUES (?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_pt_notice_comment (uuid,noticeid,comment,createdby, createdtime, lastmodifiedby, lastmodifiedtime, particulars, asperreturnfiled, aspermunicipality, remarks) VALUES (?,?,?,?,?,?,?,?,?,?,?);
       basePath: Notice.NoticeComment.*
       jsonMaps:
 
@@ -84,6 +92,14 @@ serviceMaps:
       - jsonPath: $.Notice.NoticeComment.*.auditDetails.lastModifiedBy
 
       - jsonPath: $.Notice.NoticeComment.*.auditDetails.lastModifiedTime
+      
+      - jsonPath: $.Notice.NoticeComment.*.particulars
+      
+      - jsonPath: $.Notice.NoticeComment.*.asPerReturnFiled
+      
+      - jsonPath: $.Notice.NoticeComment.*.asPerMunicipality
+      
+      - jsonPath: $.Notice.NoticeComment.*.remarks
 
       
 
