@@ -344,26 +344,6 @@
                   false
                 ],
                 "style": "receipt-table"
-              },
-              {
-                "text": "Paid For",
-                "border": [
-                  false,
-                  false,
-                  false,
-                  false
-                ],
-                "style": "receipt-table-value"
-              },
-              {
-                "text": " {{assessmentYear}}",
-                "border": [
-                  false,
-                  false,
-                  true,
-                  false
-                ],
-                "style": "receipt-table"
               }
             ],
             [
