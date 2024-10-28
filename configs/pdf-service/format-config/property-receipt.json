@@ -393,7 +393,7 @@
               {
                 "text": "Paid For",
                 "border": [
-                  false,
+                  true,
                   false,
                   false,
                   false
@@ -405,28 +405,28 @@
                 "border": [
                   false,
                   false,
-                  true,
-                  false
+                  false,
+                  true
                 ],
                 "style": "receipt-table"
               },
               {
-                "text": "{{transaction_id}}",
+                "text": "",
                 "border": [
                   false,
                   false,
                   false,
-                  false
+                  true
                 ],
                 "style": "receipt-table-value"
               },
               {
-                "text": "{{transactionID}}",
+                "text": "",
                 "border": [
                   false,
                   false,
                   true,
-                  false
+                  true
                 ],
                 "style": "receipt-table",
                 "font": "Roboto"
