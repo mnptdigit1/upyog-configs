@@ -391,22 +391,42 @@
             ],
             [
               {
-                "text": "Paid For",
+                "text": "{{g8_receipt_no}}.",
                 "border": [
                   true,
                   false,
                   false,
-                  false
+                  true
                 ],
                 "style": "receipt-table-value"
               },
               {
-                "text": " {{assessmentYear}}",
+                "text": "{{G8ReceiptNo}}",
+                "border": [
+                  false,
+                  false,
+                  false,
+                  true
+                ],
+                "style": "receipt-table"
+              },
+              {
+                "text": "{{g8_receipt_date}}",
+                "border": [
+                  false,
+                  false,
+                  false,
+                  true
+                ],
+                "style": "receipt-table-value"
+              },
+              {
+                "text": "{{G8ReceiptDate}}",
                 "border": [
                   false,
                   false,
                   true,
-                  false
+                  true
                 ],
                 "style": "receipt-table"
               }
