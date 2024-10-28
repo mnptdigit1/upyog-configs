@@ -316,6 +316,26 @@
                 "style": "receipt-table-value"
               },
               {
+                "text": "₹ {{pendingAmount}}",
+                "border": [
+                  false,
+                  false,
+                  false,
+                  false
+                ],
+                "style": "receipt-table"
+              },
+              {
+                "text": "Excess Amount",
+                "border": [
+                  true,
+                  false,
+                  false,
+                  false
+                ],
+                "style": "receipt-table-value"
+              },
+              {
                 "text": "₹ {{excessAmountPaid}}",
                 "border": [
                   false,
