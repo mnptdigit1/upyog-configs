@@ -409,6 +409,27 @@
                   false
                 ],
                 "style": "receipt-table"
+              },
+              {
+                "text": "{{transaction_id}}",
+                "border": [
+                  false,
+                  false,
+                  false,
+                  false
+                ],
+                "style": "receipt-table-value"
+              },
+              {
+                "text": "{{transactionID}}",
+                "border": [
+                  false,
+                  false,
+                  true,
+                  false
+                ],
+                "style": "receipt-table",
+                "font": "Roboto"
               }
             ]
           ]
