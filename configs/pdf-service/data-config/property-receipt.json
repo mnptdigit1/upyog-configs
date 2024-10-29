@@ -427,15 +427,18 @@
           {
             "externalAPI": [     
               { 
-                "path": "https://mnptapp.manipurpropertytax.org/egov-mdms-service/v1/_get",
-                "queryParam": "moduleName=tenant&masterName=tenants&tenantId=mn&filter=%5B?(@.code=='{$.tenantId}')%5D",
+                "path": "http://egov-mdms-service:8080/egov-mdms-service/v1/_get",
+                "queryParam": "moduleName=tenant&masterName=tenants&tenantId=pg&filter=%5B?(@.code=='{$.tenantId}')%5D",
                   "apiRequest": null,
                   "responseMapping":[
                     {             
                       "variable":"address",
                       "value":"$.MdmsRes.tenant.tenants[0].address"
                     },
-                    
+                    {
+                      "variable":"phoneNumber",
+                      "value":"$.MdmsRes.tenant.tenants[0].contactNumber"
+                    },
                     {
                       "variable":"website",
                       "value":"$.MdmsRes.tenant.tenants[0].domainUrl"
@@ -461,7 +464,7 @@
                   ]
               },
 			  {
-			 "path": "https://mnptapp.manipurpropertytax.org/property-services/property/_search",
+			 "path": "http://property-services.egov:8080/property-services/property/_search",
             "queryParam": "propertyIds=$.paymentDetails[0].bill.consumerCode,tenantId=$.tenantId",
             "apiRequest": null,
                   "responseMapping":[
@@ -473,8 +476,8 @@
 					]
 			  },
               { 
-                "path": "https://mnptapp.manipurpropertytax.org/egov-mdms-service/v1/_get",
-                "queryParam": "moduleName=tenant&masterName=footer&tenantId=mn&filter=%5B?(@.code=='{$.tenantId}' %26%26 @.service=='{$.paymentDetails[0].businessService}')%5D",
+                "path": "http://egov-mdms-service:8080/egov-mdms-service/v1/_get",
+                "queryParam": "moduleName=tenant&masterName=footer&tenantId=pg&filter=%5B?(@.code=='{$.tenantId}' %26%26 @.service=='{$.paymentDetails[0].businessService}')%5D",
                 "apiRequest": null,
                 "responseMapping":[
                   {

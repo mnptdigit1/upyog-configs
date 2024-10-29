@@ -44,7 +44,9 @@
                   {
                     "text": "{{address}}"
                   },
-                  
+                  {
+                    "text": "{{phoneNumber}}"
+                  },
                   {
                     "text": "{{website}}"
                   },
@@ -324,7 +326,7 @@
                 "style": "receipt-table"
               },
               {
-                "text": "Excess Amount",
+                "text": "Paid For",
                 "border": [
                   false,
                   false,
@@ -334,7 +336,7 @@
                 "style": "receipt-table-value"
               },
               {
-                "text": "₹ {{excessAmountPaid}}",
+                "text": " {{assessmentYear}}",
                 "border": [
                   false,
                   false,
@@ -389,7 +391,7 @@
             ],
             [
               {
-                "text": "Paid For",
+                "text": "{{g8_receipt_no}}.",
                 "border": [
                   true,
                   false,
@@ -399,7 +401,7 @@
                 "style": "receipt-table-value"
               },
               {
-                "text": " {{assessmentYear}}",
+                "text": "{{G8ReceiptNo}}",
                 "border": [
                   false,
                   false,
@@ -409,7 +411,7 @@
                 "style": "receipt-table"
               },
               {
-                "text": "",
+                "text": "{{g8_receipt_date}}",
                 "border": [
                   false,
                   false,
@@ -419,15 +421,14 @@
                 "style": "receipt-table-value"
               },
               {
-                "text": "",
+                "text": "{{G8ReceiptDate}}",
                 "border": [
                   false,
                   false,
                   true,
                   true
                 ],
-                "style": "receipt-table",
-                "font": "Roboto"
+                "style": "receipt-table"
               }
             ]
           ]
