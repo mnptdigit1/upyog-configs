@@ -435,10 +435,7 @@
                       "variable":"address",
                       "value":"$.MdmsRes.tenant.tenants[0].address"
                     },
-                    {
-                      "variable":"phoneNumber",
-                      "value":"$.MdmsRes.tenant.tenants[0].contactNumber"
-                    },
+                    
                     {
                       "variable":"website",
                       "value":"$.MdmsRes.tenant.tenants[0].domainUrl"
@@ -464,7 +461,7 @@
                   ]
               },
 			  {
-			 "path": "http://property-services.egov:8080/property-services/property/_search",
+			 "path": "https://mnptapp.manipurpropertytax.org/property-services/property/_search",
             "queryParam": "propertyIds=$.paymentDetails[0].bill.consumerCode,tenantId=$.tenantId",
             "apiRequest": null,
                   "responseMapping":[

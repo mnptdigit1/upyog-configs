@@ -44,9 +44,7 @@
                   {
                     "text": "{{address}}"
                   },
-                  {
-                    "text": "{{phoneNumber}}"
-                  },
+                  
                   {
                     "text": "{{website}}"
                   },
