@@ -326,7 +326,7 @@
                 "style": "receipt-table"
               },
               {
-                "text": "Paid For",
+                "text": "Excess Amount",
                 "border": [
                   false,
                   false,
@@ -336,7 +336,7 @@
                 "style": "receipt-table-value"
               },
               {
-                "text": " {{assessmentYear}}",
+                "text": "₹ {{excessAmountPaid}}",
                 "border": [
                   false,
                   false,
@@ -391,7 +391,7 @@
             ],
             [
               {
-                "text": "{{g8_receipt_no}}.",
+                "text": "Paid For",
                 "border": [
                   true,
                   false,
@@ -401,7 +401,7 @@
                 "style": "receipt-table-value"
               },
               {
-                "text": "{{G8ReceiptNo}}",
+                "text": " {{assessmentYear}}",
                 "border": [
                   false,
                   false,
@@ -411,7 +411,7 @@
                 "style": "receipt-table"
               },
               {
-                "text": "{{g8_receipt_date}}",
+                "text": "",
                 "border": [
                   false,
                   false,
@@ -421,14 +421,15 @@
                 "style": "receipt-table-value"
               },
               {
-                "text": "{{G8ReceiptDate}}",
+                "text": "",
                 "border": [
                   false,
                   false,
                   true,
                   true
                 ],
-                "style": "receipt-table"
+                "style": "receipt-table",
+                "font": "Roboto"
               }
             ]
           ]
