@@ -44,14 +44,12 @@
                   {
                     "text": "{{address}}"
                   },
-                  {
-                    "text": "{{phoneNumber}}"
-                  },
+                  
                   {
                     "text": "{{website}}"
                   },
                   {
-                    "text": "{{email}}"
+                    "text": "{{emailId}}"
                   }
                 ],
                 "alignment": "right",
@@ -186,7 +184,7 @@
                 "style": "receipt-table"
               },
               {
-                "text" : "Owner Email",
+                "text" : "",
                 "border": [
                   false,
                   false,
@@ -196,7 +194,7 @@
                 "style": "receipt-table-value"
               },
               {
-                "text" : "{{email}}",
+                "text" : "{{}}",
                 "border": [
                   false,
                   false,

@@ -435,16 +435,13 @@
                       "variable":"address",
                       "value":"$.MdmsRes.tenant.tenants[0].address"
                     },
-                    {
-                      "variable":"phoneNumber",
-                      "value":"$.MdmsRes.tenant.tenants[0].contactNumber"
-                    },
+                    
                     {
                       "variable":"website",
                       "value":"$.MdmsRes.tenant.tenants[0].domainUrl"
                     },
                     {
-                      "variable":"email",
+                      "variable":"emailId",
                       "value":"$.MdmsRes.tenant.tenants[0].emailId"
                     },
                     {
@@ -469,10 +466,7 @@
             "apiRequest": null,
                   "responseMapping":[
                 
-             {             
-                      "variable":"email",
-                      "value":"$.Properties[0].owners[0].emailId"
-                    }
+            
 					]
 			  },
               { 
