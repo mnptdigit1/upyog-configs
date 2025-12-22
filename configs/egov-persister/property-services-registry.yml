@@ -345,6 +345,47 @@ serviceMaps:
       - jsonPath: $.Property
         type: JSON
         dbType: JSONB
+        
+    - query: UPDATE eg_pt_property SET propertyid=?,  surveyid=?, accountid=?, oldpropertyid=?, status=?, propertytype=?, ownershipcategory=?, usagecategory=?, nooffloors=?, landarea=?,   superbuiltuparea=?, linkedproperties=?, lastmodifiedby=?, lastmodifiedtime=?, additionaldetails=? WHERE Id=? AND tenantId=?;
+      basePath: Property
+      jsonMaps:
+
+      - jsonPath: $.Property.propertyId
+
+      - jsonPath: $.Property.surveyId
+
+      - jsonPath: $.Property.accountId
+
+      - jsonPath: $.Property.oldPropertyId
+
+      - jsonPath: $.Property.status
+
+      - jsonPath: $.Property.propertyType
+
+      - jsonPath: $.Property.ownershipCategory
+
+      - jsonPath: $.Property.usageCategory
+
+      - jsonPath: $.Property.noOfFloors
+
+      - jsonPath: $.Property.landArea
+
+      - jsonPath: $.Property.superBuiltUpArea
+
+      - jsonPath: $.Property.linkedProperties
+
+      - jsonPath: $.Property.auditDetails.lastModifiedBy
+
+      - jsonPath: $.Property.auditDetails.lastModifiedTime
+
+      - jsonPath: $.Property.additionalDetails
+        type: JSON
+        dbType: JSONB
+
+      - jsonPath: $.Property.id
+
+      - jsonPath: $.Property.tenantId
+
 
     - query: INSERT INTO eg_pt_unit(id, tenantid, propertyid, floorno, unittype, usagecategory, occupancytype, occupancydate, carpetarea, builtuparea, plintharea, superbuiltuparea, arv, constructiontype, constructiondate, dimensions, active, createdby, createdtime, lastmodifiedby, lastmodifiedtime, structuretype, ageofproperty) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET floorno = EXCLUDED.floorno, unittype = EXCLUDED.unittype, usagecategory = EXCLUDED.usagecategory, occupancytype = EXCLUDED.occupancytype, occupancydate = EXCLUDED.occupancydate, carpetarea = EXCLUDED.carpetarea, builtuparea = EXCLUDED.builtuparea, plintharea = EXCLUDED.plintharea, superbuiltuparea = EXCLUDED.superbuiltuparea, arv = EXCLUDED.arv, constructiontype = EXCLUDED.constructiontype, constructiondate = EXCLUDED.constructiondate, dimensions = EXCLUDED.dimensions, active = EXCLUDED.active, structuretype = EXCLUDED.structuretype, ageofproperty = EXCLUDED.ageofproperty, lastmodifiedby = EXCLUDED.lastmodifiedby, lastmodifiedtime = EXCLUDED.lastmodifiedtime;
 
