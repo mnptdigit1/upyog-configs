@@ -815,7 +815,7 @@ serviceMaps:
     queryMaps:
 
 
-    - query: INSERT INTO eg_pt_property_appeal (id, propertyid,status,creationReason,acknowldgementNumber,tenantid,appealid,propertyaddress,assesmnetyear,nameofassigningofficer,designation,ruleunderorderpassed,dateoforder,dateofservice,dateofpayment,applicantaddress,reliefclaimed,statementoffacts,groundofappeal,ownername,createdby,lastmodifiedby,createdtime,lastmodifiedtime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+    - query: INSERT INTO eg_pt_property_appeal (id, propertyid,status,creationReason,acknowldgementNumber,tenantid,appealid,propertyaddress,assesmnetyear,nameofassigningofficer,designation,ruleunderorderpassed,dateoforder,dateofservice,dateofpayment,applicantaddress,reliefclaimed,statementoffacts,groundofappeal,ownername,createdby,lastmodifiedby,createdtime,lastmodifiedtime,propertytenantid) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
       basePath: Appeal
       jsonMaps:
 
@@ -866,6 +866,8 @@ serviceMaps:
       - jsonPath: $.Appeal.auditDetails.createdTime
 
       - jsonPath: $.Appeal.auditDetails.lastModifiedTime
+      
+      - jsonPath: $.Appeal.propertyTenantID
 
       
 
