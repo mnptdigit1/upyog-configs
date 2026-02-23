@@ -528,7 +528,7 @@ serviceMaps:
 
       - jsonPath: $.Property.auditDetails.lastModifiedTime
 
-    - query: UPDATE eg_pt_address SET doorno=?, plotno=?, buildingname=?, street=?, landmark=?, city=?, pincode=?, locality=?, district=?, region=?, state=?, country=?, latitude=?, longitude=?, lastmodifiedby=?, lastmodifiedtime=?, additionaldetails=?, dag_no=?, district_name=?, town_name=?, ward_no=?, village=?, patta_no=?, proper_house_no=?, common_name_of_building=?, principal_road_name=?, sub_side_road_name=?, landmark_name=?, others,type_of_road=? WHERE id=?;
+    - query: UPDATE eg_pt_address SET doorno=?, plotno=?, buildingname=?, street=?, landmark=?, city=?, pincode=?, locality=?, district=?, region=?, state=?, country=?, latitude=?, longitude=?, lastmodifiedby=?, lastmodifiedtime=?, additionaldetails=?, dag_no=?, district_name=?, town_name=?, ward_no=?, village=?, patta_no=?, proper_house_no=?, common_name_of_building=?, principal_road_name=?, sub_side_road_name=?, landmark_name=?, others=?,type_of_road=? WHERE id=?;
       basePath: Property.address
       jsonMaps:
 
