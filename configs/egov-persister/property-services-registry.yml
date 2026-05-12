@@ -967,3 +967,21 @@ serviceMaps:
       jsonMaps:
 
       - jsonPath: $.Property.parentPropertyUuId
+      
+  - version: 1.0
+    description: Update property document details in eg_pt_document table
+    fromTopic: update-property-document
+    isTransaction: true
+
+    queryMaps:
+    - query: update eg_pt_document set status=? where id=? and entityid=? and tenantid=?
+      basePath: $.Property.documents.*
+      jsonMaps:
+      
+      - jsonPath: $.Property.documents.*.status
+
+      - jsonPath: $.Property.documents.*.id
+      
+      - jsonPath: $.Property.id
+      
+      - jsonPath: $.Property.tenantId
